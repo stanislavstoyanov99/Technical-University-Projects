@@ -1,17 +1,15 @@
 # Technician University Projects
 # <p align="center">Courses from the Informatics and Software Science program in Technician University<p>
 
-<a href="https://fpmi.bg/moodle/course/view.php?id=6" rel="Courses">  ![Technician University logo][logo] <a/>
+<a href="https://tu-sofia.bg/" rel="Courses">  ![Technician University logo][logo] <a/>
 
-[logo]: https://tu-sofia.bg/img/TU_Logo_Mery.png "Logo Title Text 2"
+[logo]: https://tu-sofia.bg/img/TU_Logo_Mery.png "Logo Title"
 
 <br/>
 <br/>
-<br/>
-
 <h2> Courses </h2>
 
-|**Course**|**Link**| 
+|**Course**| 
 |---|---|
 |<a href="https://tu-sofia.bg/uplan/%D0%A4%D0%9F%D0%9C%D0%98/%D0%91%D0%B0%D0%BA%D0%B0%D0%BB%D0%B0%D0%B2%D1%8A%D1%80/%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D1%81%D0%BE%D1%84%D1%82%D1%83%D0%B5%D1%80%D0%BD%D0%B8%20%D0%BD%D0%B0%D1%83%D0%BA%D0%B8,%20%D0%B1%D0%B0%D0%BA%D0%B0%D0%BB%D0%B0%D0%B2%D1%80%D0%B8.pdf" > First course </a> 
 
