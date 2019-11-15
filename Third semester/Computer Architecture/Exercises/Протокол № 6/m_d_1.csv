@@ -1,0 +1,16 @@
+Module,Name,/simple_queue/src/results/m_d_1-0-$0=1.sca_m_d_1-0-20191112-14:36:08-10020
+QueueNet.queue,queque lenght:count,3.02E+07
+QueueNet.queue,queque lenght:mean,0.10092
+QueueNet.queue,queque lenght:stddev,0.318731
+QueueNet.queue,queque lenght:sum,3.05E+06
+QueueNet.queue,queque lenght:sqrsum,3.38E+06
+QueueNet.queue,queque lenght:min,0
+QueueNet.queue,queque lenght:max,5
+,,
+QueueNet.server,Latengy:count,2.75E+06
+QueueNet.server,Latengy:mean,0.0555902
+QueueNet.server,Latengy:stddev,0.0351159
+QueueNet.server,Latengy:sum,152614
+QueueNet.server,Latengy:sqrsum,11869.2
+QueueNet.server,Latengy:min,4.49E-08
+QueueNet.server,Latengy:max,0.461831
