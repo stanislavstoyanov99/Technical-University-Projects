@@ -10,9 +10,9 @@
             myList.InsertFront(10);
             myList.InsertLast(15);
 
-            Node<int> newNode = new Node<int>(30);
+            Node<int> previousNode = new Node<int>(10);
 
-            myList.InsertAfter(newNode, 20);
+            myList.InsertAfter(previousNode, 50);
 
             myList.PrintNodes();
         }

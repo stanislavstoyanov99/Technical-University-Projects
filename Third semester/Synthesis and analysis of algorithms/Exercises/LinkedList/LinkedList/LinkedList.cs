@@ -31,7 +31,7 @@ namespace LinkedList
         {
             if (previousNode == null)
             {
-                throw new InvalidNodeValueException("Previous node cannot be null.");
+                throw new InvalidNodeValueException();
             }
 
             Node<T> newNode = new Node<T>(newData);
