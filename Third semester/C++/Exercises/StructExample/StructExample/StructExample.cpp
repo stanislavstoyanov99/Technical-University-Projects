@@ -62,6 +62,8 @@ int main()
 
 	// TODO learn how to chain constructors
 	Car* car = new Car("BMW", 170, 2011);
+
+	// Print with pointer
 	car->PrintCarDetails();
 
 	// Print with reference
