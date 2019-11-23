@@ -1,0 +1,12 @@
+Module,Name,
+n_radix_switch.host[0],Latengy:mean,2.52E-06
+n_radix_switch.host[0],Throughput:mean,2.44E+07
+,,
+n_radix_switch.host[1],Latengy:mean,2.60E-06
+n_radix_switch.host[1],Throughput:mean,2.51E+07
+,,
+n_radix_switch.host[2],Latengy:mean,2.53E-06
+n_radix_switch.host[2],Throughput:mean,2.46E+07
+,,
+n_radix_switch.host[3],Latengy:mean,2.61E-06
+n_radix_switch.host[3],Throughput:mean,2.44E+07
