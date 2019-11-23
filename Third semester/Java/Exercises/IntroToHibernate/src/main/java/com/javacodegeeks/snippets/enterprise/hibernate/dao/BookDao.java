@@ -14,9 +14,7 @@ public class BookDao implements BookDaoInterface<Book, String> {
     private  Session currentSession;
     private Transaction currentTransaction;
     
-    public BookDao() {
-        
-    }
+    public BookDao() {}
     
     public Session openCurrentSession() {
         this.currentSession = getSessionFactory().openSession();
@@ -63,7 +61,7 @@ public class BookDao implements BookDaoInterface<Book, String> {
     }
 
     public Book findById(String id) {
-        Book book = getCurrentSession().get(Book.class, id);
+        Book book = (Book)getCurrentSession().get(Book.class, id);
         return book;
     }
 
