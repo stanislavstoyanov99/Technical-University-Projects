@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageEngine", "StorageEngine\StorageEngine.csproj", "{3E4ED678-33BB-44EC-8BDA-9E06DFD73082}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnginesLibrary", "EnginesLibrary\EnginesLibrary.csproj", "{14175BB5-2FAE-4AE4-BAD2-0629BAB6D646}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E4ED678-33BB-44EC-8BDA-9E06DFD73082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4ED678-33BB-44EC-8BDA-9E06DFD73082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4ED678-33BB-44EC-8BDA-9E06DFD73082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4ED678-33BB-44EC-8BDA-9E06DFD73082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14175BB5-2FAE-4AE4-BAD2-0629BAB6D646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14175BB5-2FAE-4AE4-BAD2-0629BAB6D646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14175BB5-2FAE-4AE4-BAD2-0629BAB6D646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14175BB5-2FAE-4AE4-BAD2-0629BAB6D646}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6ED9602-01BE-4F96-91BE-3EAA8AF4FEDD}
+	EndGlobalSection
+EndGlobal
