@@ -1,6 +1,8 @@
+import com.point.Point;
+
 public class StartUp {
     public static void main(String[] args) {
-        Point originPoint = new Point(0, 0);
+        Point originPoint = new Point();
         Point firstPoint = new Point(7, 2);
         Point secondPoint = new Point(4, 3);
 
@@ -16,5 +18,15 @@ public class StartUp {
 
         secondPoint.translate(2, 4);
         System.out.printf("p2 is (%d, %d)\n", secondPoint.getX(), secondPoint.getY());
+
+        long result = MyMath.multiply(5, 2000);
+        System.out.println(result);
+
+        User user = new User("wrong secret", "grrr");
+        System.out.println(user.authenticate());
+
+        // default behaviour -> System.out.println("p is " + firstPoint);
+
+        System.out.println(firstPoint); // override of toString method
     }
 }

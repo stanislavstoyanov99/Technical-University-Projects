@@ -1,9 +1,11 @@
+package com.point;
+
 public class Point {
     private  int x;
     private  int y;
 
     public Point() {
-
+        this(0, 0); // calls the (x, y) constructor
     }
 
     public Point(int x, int y) {
@@ -31,6 +33,7 @@ public class Point {
         if (this.x + dx < 0 || this.y + dy < 0) {
             throw new IllegalArgumentException(Exceptions.InvalidInputNumbers);
         }
+
         this.x += dx;
         this.y += dy;
     }
@@ -44,5 +47,22 @@ public class Point {
     public double distance(Point point) {
         double differenceBetweenPoints = distanceFromOrigin(point, this);
         return differenceBetweenPoints;
+    }
+
+    @Override
+    public String toString() {
+        return "[x=" + this.x + ",y=" + this.y + "]";
+    }
+
+    @Override
+    // Returns whether o refers to a com.point.Point object with the same (x, y) coordinates as this com.point.Point object.
+    public boolean equals(Object obj) {
+        if (obj instanceof Point) {
+            Point other = (Point)obj;
+            return x == other.x && y == other.y;
+        }
+        else {
+            return false;
+        }
     }
 }

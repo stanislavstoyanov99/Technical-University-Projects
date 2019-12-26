@@ -9,7 +9,7 @@ public class Student {
 
     public void setName(String name) { this.name = name; }
 
-    public static int getStudentCount() {return studentCount; }
+    public static int getStudentCount() { return studentCount; }
 
     // Constructors
     public Student(int id, String name, String gender) {
