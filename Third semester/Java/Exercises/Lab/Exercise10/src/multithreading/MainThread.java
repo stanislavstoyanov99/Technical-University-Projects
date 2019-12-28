@@ -1,4 +1,6 @@
-public class StartUp {
+package multithreading;
+
+public class MainThread {
     private  static int counter = 0;
 
     public static synchronized void increment() {
@@ -52,7 +54,7 @@ public class StartUp {
         new C().start();
          */
 
-        A threadA = new A();
+        /*A threadA = new A();
         B threadB = new B();
         C threadC = new C();
 
@@ -68,5 +70,9 @@ public class StartUp {
         threadC.start();
 
         System.out.println("End of main thread.");
+*/
+        Worker worker = new Worker();
+        Thread t1 = new Thread(worker);
+        t1.start();
     }
 }
