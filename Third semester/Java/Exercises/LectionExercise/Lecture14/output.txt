@@ -1,0 +1,3 @@
+29.95
+java.awt.Rectangle[x=5,y=10,width=15,height=25]
+Hello, World!
