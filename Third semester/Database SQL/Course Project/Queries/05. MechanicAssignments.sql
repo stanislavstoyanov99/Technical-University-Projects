@@ -1,4 +1,4 @@
-SELECT CONCAT(m.FirstName, ' ', m.LastName) AS [Mechanic], 
+SELECT m.FirstName + ' ' + m.LastName AS [Mechanic], 
        j.[Status], 
        j.IssueDate
 FROM Mechanics AS m
