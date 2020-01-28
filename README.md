@@ -14,6 +14,6 @@
 
 |**Semesters**|**Grades**| 
 |---|---|
-|<a href="#" > First semester </a>   | <a href="https://i.postimg.cc/Tw6f8X9h/first-Semester.png"> Link</a> |
-|<a href="#" > Second semester </a>   | <a href="https://i.postimg.cc/7Y0vkR52/second-Semester.png"> Link</a> |
-|<a href="#" > Third semester </a>   | <a href=""> Link</a> |
+|<p> First semester </p>   | <a href="https://i.postimg.cc/Tw6f8X9h/first-Semester.png"> Link</a> |
+|<p> Second semester </p>   | <a href="https://i.postimg.cc/7Y0vkR52/second-Semester.png"> Link</a> |
+|<p> Third semester </p>   | <a href="#"> Link</a> |
