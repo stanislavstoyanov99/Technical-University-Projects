@@ -1,11 +1,5 @@
-#include <stdio.h>
 #include <fstream> // for file access
 #include <iostream>
-#include <conio.h>
-#include <stdlib.h>
-#include <sstream>
-#include <string>
-#include <vector>
 
 using namespace std;
 
@@ -19,7 +13,6 @@ private:
 public:
 	Matrix();
 	Matrix(unsigned, unsigned, double); // holds row size, column size, initial value for each cell
-	Matrix(const char*); // take file name and fill in the matrix with the values from that file
 	Matrix(const Matrix&); // copy constructor
 	~Matrix(); // destructor
 

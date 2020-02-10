@@ -28,76 +28,6 @@ Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial = 0.0)
 	}
 }
 
-// Constructor for given matrix from file - TODO
-Matrix::Matrix(const char* fileName)
-{
-	ifstream matrixFile(fileName); // input file stream to open the file matrix.txt
-
-	// Keep track of the column and row sizes
-	int colSize = 0;
-	int rowSize = 0;
-
-	// read it as a vector
-	string line_A;
-	int idx = 0;
-	double element_A;
-	double* vector_A = nullptr;
-
-	if (matrixFile.is_open() && matrixFile.good())
-	{
-		cout << "File matrix.txt is open. \n";
-
-		while (getline(matrixFile, line_A))
-		{
-			rowSize += 1;
-			stringstream stream_A(line_A);
-			colSize = 0;
-
-			while (1)
-			{
-				stream_A >> element_A;
-				if (!stream_A)
-				{
-					break;
-				}
-				colSize += 1;
-				double* tempArr = new double[idx + 1];
-				copy(vector_A, vector_A + idx, tempArr);
-				tempArr[idx] = element_A;
-				vector_A = tempArr;
-				idx += 1;
-			}
-		}
-	}
-	else
-	{
-		cout << "Failed to open. \n";
-	}
-
-	int j;
-	idx = 0;
-
-	m_matrix = new double* [m_rowSize];
-
-	for (unsigned i = 0; i < m_rowSize; i++)
-	{
-		m_matrix[i] = new double[m_colSize];
-	}
-
-	for (int i = 0; i < rowSize; i++)
-	{
-		for (int j = 0; j < colSize; j++)
-		{
-			this->m_matrix[i][j] = vector_A[idx];
-			idx++;
-		}
-	}
-
-	m_colSize = colSize;
-	m_rowSize = rowSize;
-	delete[] vector_A;
-}
-
 // Copy constructor
 Matrix::Matrix(const Matrix& other)
 {
@@ -161,7 +91,7 @@ Matrix Matrix::operator-(Matrix& other)
 	return resultMatrix;
 }
 
-// Multiplication of two matrices : TODO
+// Multiplication of two matrices
 Matrix Matrix::operator*(Matrix& other)
 {
 	Matrix resultMatrix(m_rowSize, other.getCols(), 0.0);
@@ -170,18 +100,18 @@ Matrix Matrix::operator*(Matrix& other)
 	{
 		double temp = 0.0;
 
-		for (unsigned i = 0; i < m_rowSize; i++)
+		for (unsigned row = 0; row < m_rowSize; row++)
 		{
-			for (unsigned j = 0; j < other.getCols(); j++)
+			for (unsigned col = 0; col < other.getCols(); col++)
 			{
 				temp = 0.0;
 
 				for (unsigned k = 0; k < m_colSize; k++)
 				{
-					temp += m_matrix[i][k] * other(k, j);
+					temp += m_matrix[row][k] * other(k, col);
 				}
 
-				resultMatrix(i, j) = temp;
+				resultMatrix(row, col) = temp;
 				// cout << multiply(row,col) << " ";
 			}
 
@@ -192,7 +122,8 @@ Matrix Matrix::operator*(Matrix& other)
 	}
 	else
 	{
-		return "Column size of the first matrix should be equal to the row number of the second matrix.";
+		Matrix emptyMatrix(m_rowSize, m_colSize);
+		return emptyMatrix;
 	}
 }
 
@@ -341,7 +272,7 @@ void Matrix::printSecondaryDiagonal(unsigned m_rowSize) const
 	{
 		for (unsigned col = 0; col < m_rowSize; col++)
 		{
-			if ((row+col) == (m_rowSize - 1))
+			if ((row + col) == (m_rowSize - 1))
 			{
 				cout << m_matrix[row][col] << ", ";
 			}
@@ -368,7 +299,6 @@ void Matrix::writeMatrixToFile() const
 	file.close();
 }
 
-// Prints matrix
 void Matrix::print() const
 {
 	for (unsigned row = 0; row < m_rowSize; row++)
