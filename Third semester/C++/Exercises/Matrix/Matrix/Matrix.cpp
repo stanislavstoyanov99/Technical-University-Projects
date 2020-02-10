@@ -17,13 +17,13 @@ Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial = 0.0)
 	m_colSize = colSize;
 	m_matrix = new double* [m_rowSize];
 
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		m_matrix[i] = new double[m_colSize];
+		m_matrix[row] = new double[m_colSize];
 
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			m_matrix[i][j] = initial;
+			m_matrix[row][col] = initial;
 		}
 	}
 }
@@ -31,7 +31,7 @@ Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial = 0.0)
 // Constructor for given matrix from file - TODO
 Matrix::Matrix(const char* fileName)
 {
-	ifstream file_A(fileName); // input file stream to open the file A.txt
+	ifstream matrixFile(fileName); // input file stream to open the file matrix.txt
 
 	// Keep track of the column and row sizes
 	int colSize = 0;
@@ -43,10 +43,11 @@ Matrix::Matrix(const char* fileName)
 	double element_A;
 	double* vector_A = nullptr;
 
-	if (file_A.is_open() && file_A.good())
+	if (matrixFile.is_open() && matrixFile.good())
 	{
-		// cout << "File A.txt is open. \n";
-		while (getline(file_A, line_A))
+		cout << "File matrix.txt is open. \n";
+
+		while (getline(matrixFile, line_A))
 		{
 			rowSize += 1;
 			stringstream stream_A(line_A);
@@ -104,15 +105,15 @@ Matrix::Matrix(const Matrix& other)
 	m_rowSize = other.m_rowSize;
 	m_colSize = other.m_colSize;
 
-	m_matrix = new double* [other.m_rowSize];
+	m_matrix = new double* [other.m_rowSize]; // create new instance
 
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		m_matrix[i] = new double[m_colSize];
+		m_matrix[row] = new double[m_colSize];
 
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			m_matrix[i][j] = other.m_matrix[i][j];
+			m_matrix[row][col] = other.m_matrix[row][col];
 		}
 	}
 }
@@ -120,9 +121,9 @@ Matrix::Matrix(const Matrix& other)
 // Destructor
 Matrix::~Matrix()
 {
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		delete m_matrix[i];
+		delete m_matrix[row];
 	}
 
 	delete[] m_matrix;
@@ -131,39 +132,39 @@ Matrix::~Matrix()
 // Addition of two matrices
 Matrix Matrix::operator+(Matrix& other)
 {
-	Matrix sum(m_colSize, m_rowSize, 0.0); // create new matrix instance
+	Matrix resultMatrix(m_colSize, m_rowSize, 0.0); // create new matrix instance
 
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			sum(i, j) = this->m_matrix[i][j] + other(i, j);
+			resultMatrix(row, col) = this->m_matrix[row][col] + other(row, col);
 		}
 	}
 
-	return sum;
+	return resultMatrix;
 }
 
 // Subtraction of two matrices
 Matrix Matrix::operator-(Matrix& other)
 {
-	Matrix diff(m_colSize, m_rowSize, 0.0);
+	Matrix resultMatrix(m_colSize, m_rowSize, 0.0);
 
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			diff(i, j) = this->m_matrix[i][j] - other(i, j);
+			resultMatrix(row, col) = this->m_matrix[row][col] - other(row, col);
 		}
 	}
 
-	return diff;
+	return resultMatrix;
 }
 
-// Multiplication of two matrices
+// Multiplication of two matrices : TODO
 Matrix Matrix::operator*(Matrix& other)
 {
-	Matrix multiply(m_rowSize, other.getCols(), 0.0);
+	Matrix resultMatrix(m_rowSize, other.getCols(), 0.0);
 
 	if (m_colSize == other.getRows())
 	{
@@ -180,14 +181,14 @@ Matrix Matrix::operator*(Matrix& other)
 					temp += m_matrix[i][k] * other(k, j);
 				}
 
-				multiply(i, j) = temp;
-				// cout << multiply(i,j) << " ";
+				resultMatrix(i, j) = temp;
+				// cout << multiply(row,col) << " ";
 			}
 
 			// cout << endl;
 		}
 
-		return multiply;
+		return resultMatrix;
 	}
 	else
 	{
@@ -208,11 +209,12 @@ Matrix Matrix::operator=(Matrix& other)
 Matrix Matrix::operator+(double scalar)
 {
 	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++)
+
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			result(i, j) = this->m_matrix[i][j] + scalar;
+			result(row, col) = this->m_matrix[row][col] + scalar;
 		}
 	}
 
@@ -223,11 +225,12 @@ Matrix Matrix::operator+(double scalar)
 Matrix Matrix::operator-(double scalar)
 {
 	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++)
+
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			result(i, j) = this->m_matrix[i][j] - scalar;
+			result(row, col) = this->m_matrix[row][col] - scalar;
 		}
 	}
 
@@ -238,11 +241,12 @@ Matrix Matrix::operator-(double scalar)
 Matrix Matrix::operator*(double scalar)
 {
 	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++)
+
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			result(i, j) = this->m_matrix[i][j] * scalar;
+			result(row, col) = this->m_matrix[row][col] * scalar;
 		}
 	}
 
@@ -253,11 +257,12 @@ Matrix Matrix::operator*(double scalar)
 Matrix Matrix::operator/(double scalar)
 {
 	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++)
+
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			result(i, j) = this->m_matrix[i][j] / scalar;
+			result(row, col) = this->m_matrix[row][col] / scalar;
 		}
 	}
 
@@ -287,11 +292,11 @@ Matrix Matrix::transpose()
 {
 	Matrix transpose(m_colSize, m_rowSize, 0.0);
 
-	for (unsigned i = 0; i < m_colSize; i++)
+	for (unsigned row = 0; row < m_colSize; row++)
 	{
-		for (unsigned j = 0; j < m_rowSize; j++)
+		for (unsigned col = 0; col < m_rowSize; col++)
 		{
-			transpose(i, j) = this->m_matrix[j][i];
+			transpose(row, col) = this->m_matrix[col][row];
 		}
 	}
 
@@ -301,29 +306,26 @@ Matrix Matrix::transpose()
 // Get matrix from console
 void Matrix::getMatrixFromConsole() const
 {
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			cin >> m_matrix[i][j];
+			cin >> m_matrix[row][col];
 		}
 	}
 }
 
-// TODO
-void Matrix::printPrimaryDiagonal(int n) const
+void Matrix::printPrimaryDiagonal(unsigned m_rowSize) const
 {
 	cout << "Primary diagonal: ";
 
-	Matrix matrix(n, n, 0.0);
-
-	for (int i = 0; i < n; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (int j = 0; j < n; j++)
+		for (unsigned col = 0; col < m_rowSize; col++)
 		{
-			if (i == j)
+			if (row == col)
 			{
-				matrix(i, j) = this->m_matrix[i][j];
+				cout << m_matrix[row][col] << ", ";
 			}
 		}
 	}
@@ -331,33 +333,49 @@ void Matrix::printPrimaryDiagonal(int n) const
 	cout << endl;
 }
 
-// TODO
-void Matrix::printSecondaryDiagonal(int n) const
+void Matrix::printSecondaryDiagonal(unsigned m_rowSize) const
 {
 	cout << "Secondary diagonal: ";
 
-	for (int i = 0; i < n; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (int j = 0; j < n; j++)
+		for (unsigned col = 0; col < m_rowSize; col++)
 		{
-			if ((i+j) == (n-1))
+			if ((row+col) == (m_rowSize - 1))
 			{
-				cout << m_matrix[i][j] << ", ";
+				cout << m_matrix[row][col] << ", ";
 			}
 		}
 	}
 
 	cout << endl;
+}
+
+void Matrix::writeMatrixToFile() const
+{
+	ofstream file("matrix.txt");
+
+	for (unsigned row = 0; row < m_rowSize; row++)
+	{
+		for (unsigned col = 0; col < m_colSize; col++)
+		{
+			file << "[" << m_matrix[row][col] << "]";
+		}
+
+		file << "\n";
+	}
+
+	file.close();
 }
 
 // Prints matrix
 void Matrix::print() const
 {
-	for (unsigned i = 0; i < m_rowSize; i++)
+	for (unsigned row = 0; row < m_rowSize; row++)
 	{
-		for (unsigned j = 0; j < m_colSize; j++)
+		for (unsigned col = 0; col < m_colSize; col++)
 		{
-			cout << "[" << m_matrix[i][j] << "]";
+			cout << "[" << m_matrix[row][col] << "]";
 		}
 
 		cout << endl;

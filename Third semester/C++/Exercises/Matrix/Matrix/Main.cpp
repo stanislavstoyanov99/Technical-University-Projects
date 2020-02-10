@@ -1,11 +1,11 @@
 #include <fstream> // for file access
 #include <iostream>
-#include <stdlib.h>
-#include <sstream>
 
 #include "Matrix.h"
 
 using namespace std;
+
+void readMatrixFromFile(Matrix& matrix, int m_rowSize, int m_colSize);
 
 int main()
 {
@@ -38,4 +38,27 @@ int main()
 	testMatrix.print();
 
 	cout << "\nPrint primary and secondary diagonals:\n";
+	transposedMatrix.printPrimaryDiagonal(m_rowSize);
+	transposedMatrix.printSecondaryDiagonal(m_rowSize);
+
+	cout << "\nRead matrix from file:\n";
+	Matrix matrix(m_rowSize, m_colSize, 0.0);
+	readMatrixFromFile(matrix, m_rowSize, m_colSize);
+	matrix.print();
+}
+
+// TODO
+void readMatrixFromFile(Matrix& matrix, int m_rowSize, int m_colSize)
+{
+	ifstream file("matrix.txt");
+
+	for (unsigned row = 0; row < m_rowSize; row++)
+	{
+		for (unsigned col = 0; col < m_colSize; col++)
+		{
+			file >> matrix(row, col);
+		}
+	}
+
+	file.close();
 }

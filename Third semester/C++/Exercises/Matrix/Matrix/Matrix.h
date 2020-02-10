@@ -7,7 +7,6 @@
 #include <string>
 #include <vector>
 
-using std::vector;
 using namespace std;
 
 #pragma once
@@ -43,7 +42,8 @@ public:
 	unsigned getRows() const;
 	unsigned getCols() const;
 	void getMatrixFromConsole() const;
-	void printPrimaryDiagonal(int n) const;
-	void printSecondaryDiagonal(int n) const;
+	void printPrimaryDiagonal(unsigned) const;
+	void printSecondaryDiagonal(unsigned) const;
+	void writeMatrixToFile() const;
 };
 
