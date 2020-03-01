@@ -32,7 +32,7 @@ int square1(int n)
 int square2(int *n)
 {
 	//Address of n in square2() is the same as n2 in main() 
-	printf("address of n2 in square2(): ")
+	printf("address of n2 in square2(): ");
 }
 
 void writeArrayToFile(int *array, int length)
