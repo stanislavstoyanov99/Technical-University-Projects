@@ -1,8 +1,8 @@
-﻿namespace IO2
+﻿namespace TransportTask2InitialPlan
 {
     using System;
 
-    public class StartUp
+    public class Startup
     {
         public static void Main(string[] args)
         {
