@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TransportTask1", "TransportTask1\TransportTask1.pyproj", "{457EFEDF-F3C9-488B-872E-A2C3CEF1B116}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NorthwestAngleMethodOfPotentials", "NorthwestAngleMethodOfPotentials\NorthwestAngleMethodOfPotentials.pyproj", "{EE175050-F319-4098-A180-8DEC138166B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{457EFEDF-F3C9-488B-872E-A2C3CEF1B116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457EFEDF-F3C9-488B-872E-A2C3CEF1B116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE175050-F319-4098-A180-8DEC138166B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE175050-F319-4098-A180-8DEC138166B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CC602F2-CAB5-482A-BAD3-26B8B87E08FA}
+	EndGlobalSection
+EndGlobal
