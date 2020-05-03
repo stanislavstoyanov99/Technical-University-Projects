@@ -1,0 +1,112 @@
+{
+  "vertices": [
+    {
+      "id": 0,
+      "x": 1,
+      "y": 6,
+      "sourceId": 0,
+      "minCost": 2147483647,
+      "center": "45, 195"
+    },
+    {
+      "id": 1,
+      "x": 4,
+      "y": 3,
+      "sourceId": 0,
+      "minCost": 2147483647,
+      "center": "135, 105"
+    },
+    {
+      "id": 2,
+      "x": 7,
+      "y": 3,
+      "sourceId": 1,
+      "minCost": 2147483647,
+      "center": "225, 105"
+    },
+    {
+      "id": 3,
+      "x": 4,
+      "y": 8,
+      "sourceId": 2,
+      "minCost": 2147483647,
+      "center": "135, 255"
+    },
+    {
+      "id": 4,
+      "x": 7,
+      "y": 8,
+      "sourceId": 2,
+      "minCost": 2147483647,
+      "center": "225, 255"
+    },
+    {
+      "id": 5,
+      "x": 9,
+      "y": 5,
+      "sourceId": 4,
+      "minCost": 2147483647,
+      "center": "285, 165"
+    },
+    {
+      "id": 6,
+      "x": 13,
+      "y": 5,
+      "sourceId": 5,
+      "minCost": 2147483647,
+      "center": "405, 165"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 17,
+      "firstVertexId": 1,
+      "secondVertexId": 2
+    },
+    {
+      "weight": 26,
+      "firstVertexId": 1,
+      "secondVertexId": 4
+    },
+    {
+      "weight": 10,
+      "firstVertexId": 2,
+      "secondVertexId": 4
+    },
+    {
+      "weight": 5,
+      "firstVertexId": 2,
+      "secondVertexId": 3
+    },
+    {
+      "weight": 20,
+      "firstVertexId": 3,
+      "secondVertexId": 6
+    },
+    {
+      "weight": 8,
+      "firstVertexId": 5,
+      "secondVertexId": 6
+    },
+    {
+      "weight": 8,
+      "firstVertexId": 4,
+      "secondVertexId": 5
+    },
+    {
+      "weight": 3,
+      "firstVertexId": 4,
+      "secondVertexId": 3
+    },
+    {
+      "weight": 9,
+      "firstVertexId": 6,
+      "secondVertexId": 7
+    },
+    {
+      "weight": 2,
+      "firstVertexId": 3,
+      "secondVertexId": 5
+    }
+  ]
+}
