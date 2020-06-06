@@ -15,7 +15,7 @@
 
             try
             {
-                int w = ValidateInput(inputWeightOfKnapsack);
+                int weightOfKnapsack = ValidateInput(inputWeightOfKnapsack);
 
                 Console.Write("Number of products = ");
                 string inputNumberOfProducts = Console.ReadLine();
@@ -49,7 +49,7 @@
                 }
 
                 var sw = Stopwatch.StartNew();
-                var dynamicResult = KnapSackDynamically(products, w);
+                var dynamicResult = KnapSack(products, weightOfKnapsack);
 
                 Console.WriteLine($"Time to execute: {sw.Elapsed}");
                 Console.WriteLine($"Dynamic programming result is: {dynamicResult}");
@@ -80,8 +80,7 @@
             return value;
         }
 
-        // Dynamic programming
-        private static int KnapSackDynamically(List<Product> items, int capacity)
+        private static int KnapSack(List<Product> items, int capacity)
         {
             int[,] matrix = new int[items.Count + 1, capacity + 1];
 

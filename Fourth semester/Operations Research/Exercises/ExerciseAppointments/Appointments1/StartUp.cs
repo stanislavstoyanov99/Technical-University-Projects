@@ -5,7 +5,7 @@
 
     public class StartUp
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             int n = 4;
             int[,] C = new int[,] { { 10, 20, 12, 5 }, { 3, 14, 9, 1 }, { 13, 8, 6, 9 }, { 7, 15, 6, 9 } };
