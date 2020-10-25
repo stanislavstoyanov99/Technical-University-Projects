@@ -67,7 +67,7 @@
                     }
                     else
                     {
-                        throw new ArgumentException("The letter in the input text does not exist in the allowed symbols.");
+                        throw new ArgumentException($"The letter {inputText[i]} in the input text does not exist in the allowed symbols.");
                     }
                 }
 
