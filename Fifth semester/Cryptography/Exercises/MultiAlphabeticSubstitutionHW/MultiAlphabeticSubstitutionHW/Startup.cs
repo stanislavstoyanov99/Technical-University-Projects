@@ -1,4 +1,4 @@
-﻿namespace MultiAlphabeticSubstitution
+﻿namespace MultiAlphabeticSubstitutionHW
 {
     using System;
     using System.Linq;
@@ -6,48 +6,63 @@
 
     public class Startup
     {
-        // This program is an algorithm for multi alphabetic substitution - example 2.4 - page 19 from the guide
+        // This program is an algorithm for multi alphabetic substitution - homework page 19
         public static void Main()
         {
             var bulgarianAlphabet = Enumerable.Range('А', 'Я' - 'А' + 1)
                 .Select(i => ((char)i).ToString())
                 .Where(i => i != "Ы" && i != "Э")
                 .ToArray();
+            var englishAlphabet = Enumerable.Range('A', 'Z' - 'A' + 1)
+                .Select(i => ((char)i).ToString())
+                .ToArray();
+            var digits = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
+            string[] specialSymbols = { " ", "\"", "-", "*" };
 
-            var allowedSymbols = string.Join("", bulgarianAlphabet);
-
-            Console.Write("Write input text for encryption: ");
-            var inputText = Console.ReadLine();
-
-            Console.Write("Write crypto key: ");
-            var cryptoKey = Console.ReadLine();
-
-            try
-            {
-                CheckForValidCryptoKey(allowedSymbols, cryptoKey);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return;
-            }
-
-            if (inputText.Length > 300)
-            {
-                Console.WriteLine("The input text should not be more than 300 symbols.");
-                return;
-            }
+            var allowedSymbols = string.Join("", bulgarianAlphabet)
+                + ""
+                + string.Join("", englishAlphabet)
+                + ""
+                + string.Join("", digits)
+                + ""
+                + string.Join("", specialSymbols);
 
             var encryptedText = new StringBuilder();
             var decryptedText = new StringBuilder();
+            int counter = 1;
+            int MAXIMUM_CRYPTOGRAMS_ALLOWED = 3;
 
             try
             {
-                encryptedText = EncryptMessage(allowedSymbols, inputText, cryptoKey, encryptedText);
-                Console.WriteLine($"Encrypted text: {encryptedText}");
+                while (counter <= MAXIMUM_CRYPTOGRAMS_ALLOWED)
+                {
+                    Console.Write("Write input text for encryption: ");
+                    var inputText = Console.ReadLine();
 
-                decryptedText = DecryptMessage(allowedSymbols, cryptoKey, encryptedText, decryptedText);
-                Console.WriteLine($"Decrypted text: {decryptedText}");
+                    if (inputText.Length > 300)
+                    {
+                        Console.WriteLine("The input text should not be more than 300 symbols.");
+                        return;
+                    }
+
+                    Console.Write("Write crypto key: ");
+                    var cryptoKey = Console.ReadLine();
+                    CheckForValidCryptoKey(allowedSymbols, cryptoKey);
+
+                    encryptedText = EncryptMessage(allowedSymbols, inputText, cryptoKey, encryptedText);
+                    Console.WriteLine($"Encrypted text: {encryptedText}");
+
+                    decryptedText = DecryptMessage(allowedSymbols, cryptoKey, encryptedText, decryptedText);
+                    Console.WriteLine($"Decrypted text: {decryptedText}");
+
+                    Console.WriteLine(new string('-', 30));
+
+                    counter++;
+                    encryptedText.Clear();
+                    decryptedText.Clear();
+                }
+
+                Console.WriteLine($"{MAXIMUM_CRYPTOGRAMS_ALLOWED} cryptograms made! Please provide new crypto key.");
             }
             catch (Exception ex)
             {
@@ -79,7 +94,7 @@
                 }
                 else
                 {
-                    throw new ArgumentException("The letter in the input text does not exist in the allowed symbols.");
+                    throw new ArgumentException($"The letter {inputText[i]} in the input text does not exist in the allowed symbols.");
                 }
             }
 

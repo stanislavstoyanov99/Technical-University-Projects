@@ -10,8 +10,10 @@
         // This program is an algorithm for direct replacement - example 2.2 - page 17 from the guide
         public static void Main()
         {
-            var bulgarianAlphabet = Enumerable.Range('А', 'Я' - 'А' + 1).Select(i => ((char)i).ToString()).ToArray();
-            bulgarianAlphabet = bulgarianAlphabet.Where(i => i != "Ы" && i != "Э").ToArray();
+            var bulgarianAlphabet = Enumerable.Range('А', 'Я' - 'А' + 1)
+                .Select(i => ((char)i).ToString())
+                .Where(i => i != "Ы" && i != "Э")
+                .ToArray();
             var digits = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
             string[] specialSymbols = { " ", ".", "-", "#" };
 
