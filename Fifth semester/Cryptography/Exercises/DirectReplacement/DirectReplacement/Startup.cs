@@ -23,7 +23,7 @@
                 + ""
                 + string.Join("", specialSymbols);
 
-            int[] symbolsToReplace = 
+            int[] symbolsToReplace =
                 { 10, 20, 30, 40, 15,
                   25, 11, 21, 31, 41,
                   35, 45, 12, 22, 32,
@@ -55,14 +55,15 @@
                     {
                         var currentLetter = allowedSymbols.First(x => x == inputText[i]);
 
-                        if (!char.IsWhiteSpace(currentLetter))
+                        var newPosition = allowedSymbols.IndexOf(currentLetter);
+
+                        if (char.IsWhiteSpace(currentLetter))
                         {
-                            var newPosition = allowedSymbols.IndexOf(currentLetter);
-                            encryptedText.Add(symbolsToReplace[newPosition] + " ");
+                            encryptedText.Add(symbolsToReplace[newPosition].ToString() + " ");
                         }
                         else
                         {
-                            encryptedText.Add(" ");
+                            encryptedText.Add(symbolsToReplace[newPosition].ToString());
                         }
                     }
                     else
@@ -71,22 +72,15 @@
                     }
                 }
 
-                Console.WriteLine($"Encrypted text: {string.Join("", encryptedText)}");
+                Console.WriteLine($"Encrypted text: {string.Join(" ", encryptedText)}");
 
                 for (int i = 0; i < encryptedText.Count; i++)
                 {
                     var currentValue = encryptedText[i];
 
-                    if (currentValue != " ")
-                    {
-                        var oldPosition = Array.IndexOf(symbolsToReplace, int.Parse(encryptedText[i]));
-                        var initialLetter = allowedSymbols[oldPosition];
-                        decryptedText.Append(initialLetter);
-                    }
-                    else
-                    {
-                        decryptedText.Append(" ");
-                    }
+                    var oldPosition = Array.IndexOf(symbolsToReplace, int.Parse(encryptedText[i]));
+                    var initialLetter = allowedSymbols[oldPosition];
+                    decryptedText.Append(initialLetter);
                 }
 
                 Console.WriteLine($"Decrypted text: {decryptedText}");
