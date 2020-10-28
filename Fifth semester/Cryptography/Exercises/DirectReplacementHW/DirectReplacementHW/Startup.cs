@@ -39,7 +39,6 @@
             var encryptedTextWithInterval = new List<string>();
             var decryptedTextWithInterval = new StringBuilder();
 
-            // Logic without interval in allowedSymbols
             try
             {
                 encryptedTextWithoutInterval = EncryptMessageWithoutInterval(allowedSymbols, inputText, encryptedTextWithoutInterval);
@@ -115,7 +114,7 @@
                 }
                 else
                 {
-                    throw new ArgumentException("The letter in the input text does not exist in the allowed symbols.");
+                    throw new ArgumentException($"The letter {inputText[i]} in the input text does not exist in the allowed symbols.");
                 }
             }
 
@@ -133,7 +132,7 @@
                 }
                 else
                 {
-                    throw new ArgumentException("The letter in the input text does not exist in the allowed symbols.");
+                    throw new ArgumentException($"The letter {inputText[i]} in the input text does not exist in the allowed symbols.");
                 }
             }
 
