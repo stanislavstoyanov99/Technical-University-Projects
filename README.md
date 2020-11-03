@@ -1,7 +1,7 @@
 # Technical University of Sofia Projects
 # <p align="center">Courses from the Informatics and Software Science program in Technical University of Sofia<p>
 
-<a href="https://tu-sofia.bg/" rel="Courses">  ![Technician University logo][logo] <a/>
+<a href="https://tu-sofia.bg/" rel="Courses">  ![Technical University of Sofia logo][logo] <a/>
 
 [logo]: https://tu-sofia.bg/img/TU_Logo_Mery.png "Logo Title"
 
@@ -16,4 +16,5 @@
 |---|---|
 |First semester   | <a href="https://i.postimg.cc/Tw6f8X9h/first-Semester.png"> Link</a> |
 |Second semester   | <a href="https://i.postimg.cc/7Y0vkR52/second-Semester.png"> Link</a> |
-|Third semester   | <a href="#"> Link</a> |
+|Third semester   | <a href="https://i.postimg.cc/VN50yKW8/third-Semester.jpg"> Link</a> |
+|Fourth semester   | <a href="https://i.postimg.cc/wMkjRNQ2/fourth-Semester.jpg"> Link</a> |
