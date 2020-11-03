@@ -1,5 +1,5 @@
-# Technician University Projects
-# <p align="center">Courses from the Informatics and Software Science program in Technician University<p>
+# Technical University of Sofia Projects
+# <p align="center">Courses from the Informatics and Software Science program in Technical University of Sofia<p>
 
 <a href="https://tu-sofia.bg/" rel="Courses">  ![Technician University logo][logo] <a/>
 
