@@ -24,7 +24,6 @@
                 + string.Join("", digits);
 
             var encryptedText = new StringBuilder();
-            var decryptedText = new StringBuilder();
 
             int counter = 1;
             const int MAXIMUM_ATTEMPTS_ALLOWED = 2;
@@ -42,72 +41,17 @@
                     var cryptoKey = Console.ReadLine();
 
                     inputText = ValidateInputText(inputText, cryptoKey);
+                    encryptedText = EncryptMessage(allowedSymbols, encryptedText, inputText, cryptoKey);
+                    cryptogramsCount++;
 
-                    var rows = inputText.Length / cryptoKey.Length;
-                    var cols = cryptoKey.Length;
-                    string[,] matrix = new string[rows, cols];
-
-                    int symbolCounter = 0;
-                    for (int row = 0; row < matrix.GetLength(0); row++)
-                    {
-                        for (int col = 0; col < matrix.GetLength(1); col++)
-                        {
-                            matrix[row, col] = inputText.Substring(symbolCounter, 1);
-                            symbolCounter++;
-                        }
-                    }
-
-                    var cryptoKeyDictionary = new Dictionary<int, string>();
-                    for (int i = 0; i < cryptoKey.Length; i++)
-                    {
-                        var currIndex = allowedSymbols.IndexOf(cryptoKey[i]) + 1;
-                        var currSymbol = allowedSymbols[currIndex - 1];
-                        cryptoKeyDictionary[currIndex] = currSymbol.ToString();
-                    }
-
-                    var orderedCryptoKeyDictionary = cryptoKeyDictionary
-                        .OrderBy(x => x.Key)
-                        .ToDictionary(x => x.Key, y => y.Value);
-
-                    var keyDictionary = new Dictionary<int, string>();
-                    for (int i = 0; i < cryptoKey.Length; i++)
-                    {
-                        var currSymbol = cryptoKey[i].ToString();
-                        var currSymbolIndex = allowedSymbols.IndexOf(currSymbol) + 1;
-
-                        if (orderedCryptoKeyDictionary[currSymbolIndex] == currSymbol)
-                        {
-                            var newIndex = orderedCryptoKeyDictionary.Values.ToList().IndexOf(currSymbol) + 1;
-                            keyDictionary[newIndex] = currSymbol;
-                        }
-                    }
-
-                    var matrixDictionary = new Dictionary<int, List<string>>();
-                    for (int i = 0; i < cryptoKey.Length; i++)
-                    {
-                        for (int col = 0; col < matrix.GetLength(1); col++)
-                        {
-                            var currSymbol = cryptoKey[i].ToString();
-                            var currIndеx = keyDictionary.FirstOrDefault(x => x.Value == currSymbol).Key;
-                            matrixDictionary[currIndеx] = new List<string>();
-
-                            for (int row = 0; row < matrix.GetLength(0); row++)
-                            {
-                                matrixDictionary[currIndеx].Add(matrix[row, 0]);
-                            }
-                        }
-                    }
-
-                    // TODO -> finish algorithm
                     Console.WriteLine(new string('-', 50));
 
                     Console.WriteLine($"Encrypted text: {encryptedText}");
-                    Console.WriteLine($"Decrypted text: {decryptedText}");
+                    Console.WriteLine($"Blocks: {cryptoKey.Length}; Symbols count in each block: {encryptedText.Length / cryptoKey.Length}");
                     Console.WriteLine(new string('-', 50));
 
                     counter++;
                     encryptedText.Clear();
-                    decryptedText.Clear();
                 }
 
                 Console.WriteLine($"{cryptogramsCount} cryptograms made! Please provide new crypto key.");
@@ -116,6 +60,100 @@
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static StringBuilder EncryptMessage(
+            string allowedSymbols,
+            StringBuilder encryptedText,
+            string inputText,
+            string cryptoKey)
+        {
+            var rows = inputText.Length / cryptoKey.Length;
+            var cols = cryptoKey.Length;
+            string[,] matrix = InitializeMatrix(inputText, cryptoKey, rows, cols);
+
+            var orderedCryptoKeyDictionary = SetOrderedDictionary(allowedSymbols, cryptoKey);
+
+            var modifiedCryptoKey = string.Empty;
+            for (int i = 0; i < cryptoKey.Length; i++)
+            {
+                var currSymbol = cryptoKey[i].ToString();
+                var currIndex = orderedCryptoKeyDictionary.Values.ToList().IndexOf(currSymbol) + 1;
+                modifiedCryptoKey += currIndex.ToString();
+            }
+            modifiedCryptoKey = string.Concat(modifiedCryptoKey.OrderBy(x => x));
+
+            var matrixDictionary = SetMatrixDictionary(cryptoKey, matrix, orderedCryptoKeyDictionary);
+
+            for (int i = 0; i < cryptoKey.Length; i++)
+            {
+                var currIndex = int.Parse(modifiedCryptoKey[i].ToString());
+                var currBlock = matrixDictionary[currIndex];
+
+                foreach (var symbol in currBlock)
+                {
+                    encryptedText.Append(symbol);
+                }
+            }
+
+            return encryptedText;
+        }
+
+        private static Dictionary<int, List<string>> SetMatrixDictionary(
+            string cryptoKey,
+            string[,] matrix,
+            Dictionary<int, string> orderedCryptoKeyDictionary)
+        {
+            var matrixDictionary = new Dictionary<int, List<string>>();
+
+            for (int col = 0; col < matrix.GetLength(1); col++)
+            {
+                var currSymbol = cryptoKey[col].ToString();
+                var currIndеx = orderedCryptoKeyDictionary.Values.ToList().IndexOf(currSymbol) + 1;
+                matrixDictionary[currIndеx] = new List<string>();
+
+                for (int row = 0; row < matrix.GetLength(0); row++)
+                {
+                    matrixDictionary[currIndеx].Add(matrix[row, col]);
+                }
+            }
+
+            return matrixDictionary;
+        }
+
+        private static Dictionary<int, string> SetOrderedDictionary(string allowedSymbols, string cryptoKey)
+        {
+            var cryptoKeyDictionary = new Dictionary<int, string>();
+
+            for (int i = 0; i < cryptoKey.Length; i++)
+            {
+                var currIndex = allowedSymbols.IndexOf(cryptoKey[i]) + 1;
+                var currSymbol = allowedSymbols[currIndex - 1];
+                cryptoKeyDictionary[currIndex] = currSymbol.ToString();
+            }
+
+            var orderedCryptoKeyDictionary = cryptoKeyDictionary
+                .OrderBy(x => x.Key)
+                .ToDictionary(x => x.Key, y => y.Value);
+
+            return orderedCryptoKeyDictionary;
+        }
+
+        private static string[,] InitializeMatrix(string inputText, string cryptoKey, int rows, int cols)
+        {
+            string[,] matrix = new string[rows, cols];
+
+            int symbolCounter = 0;
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    matrix[row, col] = inputText.Substring(symbolCounter, 1);
+                    symbolCounter++;
+                }
+            }
+
+            return matrix;
         }
 
         private static string ValidateInputText(string inputText, string cryptoKey)
