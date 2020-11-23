@@ -13,8 +13,9 @@
                 .Select(i => ((char)i).ToString())
                 .Where(i => i != "Ы" && i != "Э")
                 .ToArray();
+            string[] specialSymbols = { " " };
 
-            var allowedSymbols = string.Join("", bulgarianAlphabet);
+            var allowedSymbols = string.Join("", bulgarianAlphabet) + "" + string.Join("", specialSymbols);
 
             Console.Write("Write input text for encryption: ");
             var inputText = Console.ReadLine();

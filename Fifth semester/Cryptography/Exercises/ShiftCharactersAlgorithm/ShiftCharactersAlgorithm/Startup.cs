@@ -140,7 +140,7 @@
             if (!isCryptoKeyValid)
             {
                 var remainder = inputText.Length % cryptoKey.Length;
-                var totalSymbolsCount = inputText.Length + 5 - remainder;
+                var totalSymbolsCount = inputText.Length + cryptoKey.Length - remainder;
                 var symbolsToAdd = totalSymbolsCount - inputText.Length;
 
                 for (int i = 0; i < symbolsToAdd; i++)
