@@ -2,7 +2,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+
+#include "IndexBuffer.h"
 #include "Shader.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -55,18 +59,12 @@ int main()
 	};
 
 	// Create Vertex buffer
-	unsigned int VBO;
-	glGenBuffers(1, &VBO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	VertexBuffer vbo(vertices, sizeof(vertices));
+	vbo.Bind();
 
 	// Create Vertex array object
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
-
-	glBindVertexArray(VAO);
+	VertexArray vao;
+	vao.Bind();
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -74,12 +72,8 @@ int main()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	// Create Element buffer object
-	unsigned int EBO;
-	glGenBuffers(1, &EBO);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	// Create Index buffer object
+	IndexBuffer ibo(indices, sizeof(indices));
 
 	Shader ourShader("res\\vertex.glsl", "res\\fragment.glsl");
 	
@@ -94,7 +88,7 @@ int main()
 		ourShader.use();
 
 		// Bind Vertex array
-		glBindVertexArray(VAO);
+		vao.Bind();
 
 		// Change color from black to green and back in Shader program
 		/*float timeValue = glfwGetTime();
@@ -104,7 +98,7 @@ int main()
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);*/
 
 		// Draw rectangle
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		ibo.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		
 		/* Swap front and back buffers */
