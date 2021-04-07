@@ -17,19 +17,30 @@ void VertexArray::UnBind()
 	glBindVertexArray(0);
 }
 
-void VertexArray::SetVertexBuffer(VertexBuffer& vb)
+void VertexArray::SetVertexBuffer(std::unique_ptr<VertexBuffer> vb)
 {
 	Bind();
-	vb.Bind();
+	vb->Bind();
 
-	const auto& layout = vb.GetLayout();
+	const auto& layout = vb->GetLayout();
 	auto i = 0;
 
 	for (const auto& element : layout)
 	{
-		glVertexAttribPointer(i, GetComponentCount(element.type), GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		glVertexAttribPointer(i, GetComponentCount(element.type), GetGLType(element.type),
+			GL_FALSE, layout.GetStride(), (void*)element.offset);
 		glEnableVertexAttribArray(i);
 		
 		++i;
 	}
+
+	vbo = std::move(vb);
+}
+
+void VertexArray::SetIndexBuffer(std::unique_ptr<IndexBuffer> ib)
+{
+	Bind();
+	ib->Bind();
+
+	ibo = std::move(ib);
 }

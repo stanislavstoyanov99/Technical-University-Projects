@@ -27,7 +27,8 @@ class BufferLayout
 public:
 	using iterator = std::vector<BufferElement>::iterator;
 	using const_iterator = std::vector<BufferElement>::const_iterator;
-	
+
+	BufferLayout() = default;
 	BufferLayout(std::initializer_list<BufferElement> elements);
 
 	iterator begin() { return elements.begin(); }
@@ -36,6 +37,7 @@ public:
 	const_iterator begin() const { return elements.begin(); }
 	const_iterator end() const { return elements.end(); }
 
+	unsigned GetStride() const { return stride; }
 private:
 	std::vector<BufferElement> elements;
 	unsigned stride;
@@ -43,3 +45,4 @@ private:
 
 unsigned SizeOfType(ShaderDataType type);
 unsigned GetComponentCount(ShaderDataType type);
+unsigned GetGLType(ShaderDataType type);

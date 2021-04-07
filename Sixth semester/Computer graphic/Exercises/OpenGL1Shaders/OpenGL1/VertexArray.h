@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+
+#include "IndexBuffer.h"
 #include "VertexBuffer.h"
 
 class VertexArray
@@ -10,8 +13,12 @@ public:
 	void Bind();
 	void UnBind();
 
-	void SetVertexBuffer(VertexBuffer& vb);
+	void SetVertexBuffer(std::unique_ptr<VertexBuffer> vb);
+	void SetIndexBuffer(std::unique_ptr<IndexBuffer> ib);
 private:
 	unsigned int id;
+
+	std::unique_ptr<VertexBuffer> vbo;
+	std::unique_ptr<IndexBuffer> ibo;
 };
 

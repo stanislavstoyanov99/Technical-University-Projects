@@ -1,5 +1,7 @@
 #include "BufferLayout.h"
 
+#include <glad/glad.h>
+
 BufferElement::BufferElement(std::string name, ShaderDataType type)
 	: name(name), type(type), size(SizeOfType(type))
 {
@@ -61,6 +63,21 @@ unsigned GetComponentCount(ShaderDataType type)
 
 	case Mat4:
 		return 4 * 4;
+	}
+
+	return 0;
+}
+
+unsigned GetGLType(ShaderDataType type)
+{
+	switch (type)
+	{
+	case Float:
+	case Float2:
+	case Float3:
+	case Mat3:
+	case Mat4:
+		return GL_FLOAT;
 	}
 
 	return 0;
